@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Jacob Rubis — BDR & GTM Builder</title>
+<title>Jacob Rubis</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg: #F5F3EF;
@@ -20,8 +20,7 @@
   --accent-green: #0A7A45;
   --border: rgba(15,15,14,0.09);
   --border-strong: rgba(15,15,14,0.18);
-  --font-display: 'Plus Jakarta Sans', sans-serif;
-  --font-body: 'Plus Jakarta Sans', sans-serif;
+  --font: 'Plus Jakarta Sans', sans-serif;
   --r-sm: 10px;
   --r-md: 16px;
   --r-lg: 24px;
@@ -29,26 +28,20 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 html { scroll-behavior: smooth; }
-
 body {
-  font-family: var(--font-body);
+  font-family: var(--font);
   background: var(--bg);
   color: var(--ink);
   -webkit-font-smoothing: antialiased;
   line-height: 1.6;
   overflow-x: hidden;
 }
-
-/* ---- LAYOUT ---- */
 .page { max-width: 1000px; margin: 0 auto; padding: 0 28px 80px; }
 
-/* ---- NAV ---- */
+/* NAV */
 nav {
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  position: sticky; top: 0; z-index: 100;
   background: rgba(245,243,239,0.88);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -56,618 +49,268 @@ nav {
   padding: 0 28px;
 }
 .nav-inner {
-  max-width: 1000px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  max-width: 1000px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
   height: 56px;
 }
-.nav-name { font-family: var(--font-display); font-weight: 800; font-size: 17px; letter-spacing: -0.03em; }
-.nav-pill {
-  background: var(--accent);
-  color: white;
-  font-size: 12px;
-  font-weight: 500;
-  padding: 5px 13px;
-  border-radius: 99px;
-  font-family: var(--font-body);
+.nav-name { font-weight: 800; font-size: 17px; letter-spacing: -0.03em; }
+.nav-links { display: flex; gap: 4px; }
+.nav-links a {
+  font-size: 13px; font-weight: 500; color: var(--ink2);
+  text-decoration: none; padding: 6px 12px; border-radius: 8px;
+  transition: background 0.15s, color 0.15s;
 }
+.nav-links a:hover { background: var(--surface2); color: var(--ink); }
 
-/* ---- ANIMATIONS ---- */
+/* ANIMATIONS */
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(22px); }
+  from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 @keyframes ticker {
   0% { transform: translateX(0); }
-  100% { transform: translateX(calc(-400px * 4 - 96px)); }
+  100% { transform: translateX(calc(-400px * 4 - 80px)); }
 }
-.reveal {
-  opacity: 0;
-  animation: fadeUp 0.75s cubic-bezier(0.2,0.8,0.2,1) forwards;
-}
-.d1 { animation-delay: 0.08s; }
-.d2 { animation-delay: 0.16s; }
-.d3 { animation-delay: 0.24s; }
-.d4 { animation-delay: 0.32s; }
-.d5 { animation-delay: 0.40s; }
+.reveal { opacity: 0; animation: fadeUp 0.7s cubic-bezier(0.2,0.8,0.2,1) forwards; }
+.d1 { animation-delay: 0.06s; }
+.d2 { animation-delay: 0.14s; }
+.d3 { animation-delay: 0.22s; }
+.d4 { animation-delay: 0.30s; }
+.d5 { animation-delay: 0.38s; }
 
-/* ---- HERO ---- */
-.hero {
-  padding: 72px 0 64px;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 40px;
-  align-items: start;
+/* HERO */
+.hero { padding: 80px 0 72px; }
+.hero-location {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 13px; font-weight: 500; color: var(--ink3);
+  margin-bottom: 28px;
 }
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  background: var(--surface);
-  border: 1px solid var(--border-strong);
-  border-radius: 99px;
-  padding: 6px 14px 6px 10px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--ink2);
-  margin-bottom: 24px;
-}
-.hero-badge-dot {
-  width: 8px; height: 8px;
+.hero-dot {
+  width: 7px; height: 7px; border-radius: 50%;
   background: var(--accent-green);
-  border-radius: 50%;
-  animation: pulse 2s ease infinite;
+  animation: pulse 2.5s ease infinite;
 }
 @keyframes pulse {
   0%,100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.6; transform: scale(0.85); }
+  50% { opacity: 0.5; transform: scale(0.8); }
 }
 .hero-name {
-  font-family: var(--font-display);
-  font-size: clamp(42px, 7vw, 72px);
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  line-height: 1.0;
-  color: var(--ink);
-  margin-bottom: 20px;
+  font-size: clamp(56px, 9vw, 96px);
+  font-weight: 800; letter-spacing: -0.04em; line-height: 0.95;
+  color: var(--ink); margin-bottom: 32px;
 }
 .hero-name span { color: var(--accent); }
-.hero-sub {
-  font-size: 17px;
-  color: var(--ink2);
-  font-weight: 300;
-  max-width: 520px;
-  line-height: 1.65;
-  margin-bottom: 32px;
+.hero-body {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 48px; align-items: start;
 }
-.hero-contact {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-bottom: 28px;
+.hero-p {
+  font-size: 17px; color: var(--ink2); font-weight: 300;
+  line-height: 1.7; max-width: 460px;
 }
+.hero-p strong { color: var(--ink); font-weight: 600; }
+.hero-aside { display: flex; flex-direction: column; gap: 10px; }
 .contact-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: var(--surface);
-  border: 1px solid var(--border-strong);
-  border-radius: var(--r-sm);
-  padding: 7px 14px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--ink);
-  text-decoration: none;
-  transition: border-color 0.2s, background 0.2s;
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--surface); border: 1px solid var(--border-strong);
+  border-radius: var(--r-sm); padding: 9px 16px;
+  font-size: 13px; font-weight: 500; color: var(--ink);
+  text-decoration: none; transition: border-color 0.15s, color 0.15s;
 }
-.contact-chip:hover { border-color: var(--accent); background: #EFF2FF; color: var(--accent); }
-.hero-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+.contact-chip:hover { border-color: var(--accent); color: var(--accent); }
+.hero-btns { display: flex; gap: 8px; margin-top: 4px; }
 .btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 11px 22px;
-  border-radius: var(--r-sm);
-  font-size: 14px;
-  font-weight: 500;
-  font-family: var(--font-body);
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 10px 20px; border-radius: var(--r-sm);
+  font-size: 13px; font-weight: 500; font-family: var(--font);
+  text-decoration: none; border: none; cursor: pointer;
+  transition: all 0.18s;
 }
-.btn-primary { background: var(--ink); color: white; }
-.btn-primary:hover { background: #2A2A28; transform: translateY(-1px); }
-.btn-secondary { background: var(--surface); border: 1px solid var(--border-strong); color: var(--ink); }
-.btn-secondary:hover { border-color: var(--accent); color: var(--accent); background: #EFF2FF; }
+.btn-dark { background: var(--ink); color: white; }
+.btn-dark:hover { background: #2A2A28; transform: translateY(-1px); }
+.btn-outline { background: transparent; border: 1px solid var(--border-strong); color: var(--ink); }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
 
-.hero-right {
-  padding-top: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  align-items: flex-end;
-}
-.role-tag {
-  background: var(--surface);
-  border: 1px solid var(--border-strong);
-  border-radius: 99px;
-  padding: 8px 18px;
-  font-size: 14px;
-  font-weight: 600;
-  font-family: var(--font-display);
-  color: var(--ink);
-  white-space: nowrap;
-}
-.role-tag.accent { background: var(--accent); color: white; border-color: var(--accent); }
+/* DIVIDER */
+.divider { height: 1px; background: var(--border); margin: 0 0 72px; }
 
-/* ---- SECTION COMMON ---- */
+/* SECTION */
 .section { margin-bottom: 72px; }
-.section-header { margin-bottom: 32px; }
-.section-eyebrow {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  color: var(--accent);
-  text-transform: uppercase;
-  margin-bottom: 8px;
-  display: block;
+.eyebrow {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--accent);
+  display: block; margin-bottom: 8px;
 }
 .section-title {
-  font-family: var(--font-display);
-  font-size: clamp(26px, 4vw, 38px);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
-  color: var(--ink);
-}
-.section-desc {
-  font-size: 16px;
-  color: var(--ink2);
-  font-weight: 300;
-  margin-top: 10px;
-  line-height: 1.65;
-  max-width: 620px;
-}
-
-/* ---- DIVIDER ---- */
-.divider {
-  width: 100%;
-  height: 1px;
-  background: var(--border);
-  margin-bottom: 72px;
-}
-
-/* ---- WHAT I BRING ---- */
-.bring-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-}
-.bring-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--r-lg);
-  padding: 28px 24px;
-  position: relative;
-  overflow: hidden;
-  transition: border-color 0.2s, transform 0.2s;
-}
-.bring-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
-.bring-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  border-radius: var(--r-lg) var(--r-lg) 0 0;
-}
-.bring-card.c-blue::before { background: var(--accent); }
-.bring-card.c-orange::before { background: var(--accent-warm); }
-.bring-card.c-green::before { background: var(--accent-green); }
-.bring-icon {
-  font-size: 28px;
-  margin-bottom: 14px;
-  display: block;
-}
-.bring-label {
-  font-family: var(--font-display);
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--ink);
-  margin-bottom: 8px;
-}
-.bring-desc {
-  font-size: 14px;
-  color: var(--ink2);
-  font-weight: 300;
-  line-height: 1.65;
-}
-
-/* ---- METRICS ---- */
-.metrics-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-}
-.metric-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--r-lg);
-  padding: 24px 20px;
-  position: relative;
-  transition: border-color 0.2s, transform 0.2s;
-}
-.metric-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
-.metric-card.featured {
-  background: var(--ink);
-  border-color: var(--ink);
-  grid-column: span 1;
-}
-.metric-quarter {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--ink3);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.metric-card.featured .metric-quarter { color: rgba(255,255,255,0.5); }
-.quota-badge {
-  font-size: 11px;
-  padding: 3px 9px;
-  border-radius: 99px;
-  font-weight: 600;
-}
-.qb-green { background: #D1FAE5; color: #065F46; }
-.qb-blue { background: #DBEAFE; color: #1E40AF; }
-.qb-featured { background: rgba(255,255,255,0.15); color: white; }
-.metric-row { margin-bottom: 10px; }
-.metric-lbl {
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--ink3);
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  margin-bottom: 2px;
-}
-.metric-card.featured .metric-lbl { color: rgba(255,255,255,0.45); }
-.metric-val {
-  font-family: var(--font-display);
-  font-size: 22px;
-  font-weight: 800;
-  color: var(--ink);
-  letter-spacing: -0.03em;
-}
-.metric-card.featured .metric-val { color: white; }
-.metric-val.sm { font-size: 17px; }
-.bar-wrap { margin-top: 14px; }
-.bar-track { height: 4px; background: var(--surface2); border-radius: 4px; overflow: hidden; }
-.metric-card.featured .bar-track { background: rgba(255,255,255,0.15); }
-.bar-fill { height: 100%; border-radius: 4px; }
-
-/* ---- BUILDER ---- */
-.builder-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 32px;
-  gap: 24px;
-}
-.builder-stats { display: flex; gap: 32px; }
-.bstat-v {
-  font-family: var(--font-display);
-  font-size: 36px;
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  color: var(--ink);
-  display: block;
-  line-height: 1;
-}
-.bstat-l {
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--ink3);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-top: 4px;
-  display: block;
-}
-.builder-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-}
-.builder-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--r-md);
-  padding: 22px 20px;
-  transition: border-color 0.2s, transform 0.2s;
-}
-.builder-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
-.builder-tag {
-  display: inline-block;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--accent-warm);
-  background: #FEF0E8;
-  border-radius: 6px;
-  padding: 3px 9px;
-  margin-bottom: 12px;
-}
-.builder-title {
-  font-family: var(--font-display);
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--ink);
-  margin-bottom: 7px;
-}
-.builder-desc {
-  font-size: 13px;
-  color: var(--ink2);
-  font-weight: 300;
-  line-height: 1.6;
-}
-
-/* ---- TICKER ---- */
-.ticker-section { margin-bottom: 72px; }
-.ticker-outer {
-  overflow: hidden;
-  mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
-  padding: 4px 0;
-}
-.ticker-track {
-  display: flex;
-  gap: 20px;
-  width: max-content;
-  animation: ticker 45s linear infinite;
-}
-.ticker-card {
-  width: 400px;
-  flex-shrink: 0;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--r-md);
-  padding: 22px 24px;
-}
-.ticker-quote {
-  font-size: 15px;
-  color: var(--ink);
-  font-weight: 300;
-  line-height: 1.65;
-  font-style: italic;
-  margin-bottom: 14px;
-}
-.ticker-author {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--ink3);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-
-/* ---- NEXT ROLE ---- */
-.next-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-.next-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--r-lg);
-  padding: 28px 26px;
-  transition: border-color 0.2s, transform 0.2s;
-}
-.next-card:hover { border-color: var(--border-strong); transform: translateY(-2px); }
-.next-card.dark {
-  background: var(--ink);
-  border-color: var(--ink);
-  grid-column: span 2;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 32px;
-}
-.next-card-tag {
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--ink3);
+  font-size: clamp(26px, 4vw, 36px); font-weight: 800;
+  letter-spacing: -0.03em; line-height: 1.1; color: var(--ink);
   margin-bottom: 10px;
 }
-.next-card.dark .next-card-tag { color: rgba(255,255,255,0.4); }
-.next-card-title {
-  font-family: var(--font-display);
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--ink);
-  margin-bottom: 10px;
-  letter-spacing: -0.02em;
-}
-.next-card.dark .next-card-title { color: white; font-size: 26px; }
-.next-card-body {
-  font-size: 14px;
-  color: var(--ink2);
-  font-weight: 300;
-  line-height: 1.65;
-}
-.next-card.dark .next-card-body { color: rgba(255,255,255,0.6); max-width: 560px; }
-.target-roles-inline {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  flex-shrink: 0;
-}
-.target-role-pill {
-  background: rgba(255,255,255,0.12);
-  color: white;
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 99px;
-  padding: 8px 18px;
-  font-size: 14px;
-  font-weight: 600;
-  font-family: var(--font-display);
-  white-space: nowrap;
+.section-sub {
+  font-size: 16px; color: var(--ink2); font-weight: 300;
+  line-height: 1.65; max-width: 580px; margin-bottom: 36px;
 }
 
-/* ---- TECH STACK ---- */
-.stack-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 12px;
-}
-.stack-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--r-md);
-  padding: 20px 14px;
-  text-align: center;
-  transition: border-color 0.2s, transform 0.2s;
-}
-.stack-card:hover { border-color: var(--accent); transform: translateY(-2px); }
-.stack-icon { font-size: 26px; margin-bottom: 8px; display: block; }
-.stack-name {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--ink);
-  font-family: var(--font-display);
-}
-
-/* ---- ABOUT ---- */
+/* ABOUT */
 .about-grid {
-  display: grid;
-  grid-template-columns: 1fr 380px;
-  gap: 48px;
-  align-items: start;
+  display: grid; grid-template-columns: 1fr 340px;
+  gap: 56px; align-items: start;
 }
 .about-text p {
-  font-size: 16px;
-  color: var(--ink2);
-  font-weight: 300;
-  line-height: 1.8;
-  margin-bottom: 18px;
+  font-size: 16px; color: var(--ink2); font-weight: 300;
+  line-height: 1.85; margin-bottom: 20px;
 }
-.about-text p:first-child {
-  font-size: 17px;
-  color: var(--ink);
-  font-weight: 400;
+.about-text p:first-child { font-size: 17px; color: var(--ink); font-weight: 400; }
+.about-text p:last-child { margin-bottom: 0; }
+.sidebar { display: flex; flex-direction: column; gap: 10px; position: sticky; top: 76px; }
+.scard {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r-md); padding: 18px 20px;
 }
-.about-sidebar { display: flex; flex-direction: column; gap: 12px; position: sticky; top: 80px; }
-.sidebar-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--r-md);
-  padding: 20px 22px;
+.scard-label {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.12em; color: var(--ink3); margin-bottom: 6px;
 }
-.sidebar-label {
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--ink3);
-  margin-bottom: 8px;
+.scard-val {
+  font-size: 15px; font-weight: 700; color: var(--ink); line-height: 1.4;
 }
-.sidebar-val {
-  font-family: var(--font-display);
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--ink);
-  line-height: 1.4;
+.scard-sub { font-size: 13px; font-weight: 400; color: var(--ink2); margin-top: 2px; }
+.scard-mit {
+  background: #A31F34; border-color: #A31F34;
 }
-.mit-card {
-  background: #A31F34;
-  border: none;
-  color: white;
-}
-.mit-card .sidebar-label { color: rgba(255,255,255,0.6); }
-.mit-card .sidebar-val { color: white; font-size: 13px; font-family: var(--font-body); font-weight: 400; line-height: 1.6; }
+.scard-mit .scard-label { color: rgba(255,255,255,0.55); }
+.scard-mit .scard-val { color: white; font-size: 13px; font-weight: 400; line-height: 1.6; }
 .mit-link {
-  display: inline-block;
-  margin-top: 10px;
-  font-size: 12px;
-  color: rgba(255,255,255,0.8);
-  text-decoration: none;
+  display: inline-block; margin-top: 10px; font-size: 12px;
+  color: rgba(255,255,255,0.75); text-decoration: none;
   border-bottom: 1px solid rgba(255,255,255,0.3);
 }
 .mit-link:hover { color: white; border-color: white; }
 
-/* ---- SKILLS ---- */
-.skills-wrap { display: flex; flex-wrap: wrap; gap: 9px; }
-.skill-pill {
-  background: var(--surface);
-  border: 1px solid var(--border-strong);
-  border-radius: 99px;
-  padding: 7px 16px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--ink);
-  transition: all 0.2s;
+/* METRICS */
+.metrics-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
 }
-.skill-pill:hover { border-color: var(--accent); color: var(--accent); background: #EFF2FF; }
+.mcard {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r-lg); padding: 22px 20px;
+  transition: border-color 0.18s, transform 0.18s;
+}
+.mcard:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+.mcard.dark { background: var(--ink); border-color: var(--ink); }
+.mcard-q {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--ink3);
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 18px;
+}
+.mcard.dark .mcard-q { color: rgba(255,255,255,0.4); }
+.qbadge {
+  font-size: 10px; font-weight: 700; padding: 2px 8px;
+  border-radius: 99px;
+}
+.qb-g { background: #D1FAE5; color: #065F46; }
+.qb-w { background: rgba(255,255,255,0.14); color: white; }
+.mrow { margin-bottom: 12px; }
+.mrow:last-child { margin-bottom: 0; }
+.mlbl {
+  font-size: 10px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.07em; color: var(--ink3); margin-bottom: 2px;
+}
+.mcard.dark .mlbl { color: rgba(255,255,255,0.38); }
+.mval {
+  font-size: 22px; font-weight: 800; letter-spacing: -0.03em; color: var(--ink);
+}
+.mval.sm { font-size: 17px; }
+.mcard.dark .mval { color: white; }
+.bar { height: 3px; background: var(--surface2); border-radius: 3px; overflow: hidden; margin-top: 16px; }
+.bar-fill { height: 100%; border-radius: 3px; background: #059669; }
 
-/* ---- CTA ---- */
-.cta-section {
-  background: var(--ink);
-  border-radius: var(--r-xl);
-  padding: 56px 48px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 32px;
-  margin-bottom: 48px;
+/* BUILDER */
+.builder-header {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  gap: 24px; margin-bottom: 28px;
+}
+.builder-stats { display: flex; gap: 36px; flex-shrink: 0; }
+.bstat-n {
+  font-size: 38px; font-weight: 800; letter-spacing: -0.04em;
+  color: var(--ink); line-height: 1; display: block;
+}
+.bstat-l {
+  font-size: 11px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--ink3); margin-top: 5px; display: block;
+}
+.tools-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+}
+.tcard {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r-md); padding: 20px;
+  transition: border-color 0.18s, transform 0.18s;
+}
+.tcard:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+.ttag {
+  display: inline-block; font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--accent-warm); background: #FEF0E8;
+  border-radius: 6px; padding: 3px 8px; margin-bottom: 10px;
+}
+.ttitle { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+.tdesc { font-size: 13px; color: var(--ink2); font-weight: 300; line-height: 1.6; }
+
+/* TICKER */
+.ticker-wrap { margin-bottom: 72px; }
+.ticker-outer {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+}
+.ticker-track {
+  display: flex; gap: 16px; width: max-content;
+  animation: ticker 48s linear infinite;
+}
+.ticker-card {
+  width: 400px; flex-shrink: 0;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r-md); padding: 20px 22px;
+}
+.tq { font-size: 14px; color: var(--ink); font-weight: 300; line-height: 1.65; font-style: italic; margin-bottom: 12px; }
+.ta { font-size: 10px; font-weight: 700; color: var(--ink3); text-transform: uppercase; letter-spacing: 0.1em; }
+
+/* CTA */
+.cta {
+  background: var(--ink); border-radius: var(--r-xl);
+  padding: 52px 48px;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 32px; margin-bottom: 48px;
 }
 .cta-title {
-  font-family: var(--font-display);
-  font-size: clamp(24px, 4vw, 38px);
-  font-weight: 800;
-  color: white;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
-  margin-bottom: 12px;
+  font-size: clamp(22px, 3.5vw, 34px); font-weight: 800;
+  color: white; letter-spacing: -0.03em; margin-bottom: 10px;
 }
-.cta-sub { font-size: 16px; color: rgba(255,255,255,0.55); font-weight: 300; max-width: 420px; line-height: 1.6; }
-.cta-btns { display: flex; gap: 10px; flex-shrink: 0; flex-direction: column; align-items: flex-end; }
+.cta-sub { font-size: 15px; color: rgba(255,255,255,0.5); font-weight: 300; max-width: 380px; line-height: 1.65; }
+.cta-btns { display: flex; gap: 8px; flex-shrink: 0; }
 .btn-white { background: white; color: var(--ink); }
-.btn-white:hover { background: #F3F4F6; transform: translateY(-1px); }
+.btn-white:hover { background: #F0F0F0; transform: translateY(-1px); }
 .btn-ghost { background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); }
-.btn-ghost:hover { background: rgba(255,255,255,0.17); }
+.btn-ghost:hover { background: rgba(255,255,255,0.16); }
 
-/* ---- FOOTER ---- */
 footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-bottom: 32px;
-  font-size: 12px;
-  color: var(--ink3);
+  display: flex; justify-content: space-between; align-items: center;
+  padding-bottom: 32px; font-size: 12px; color: var(--ink3);
 }
 
-/* ---- RESPONSIVE ---- */
-@media (max-width: 768px) {
-  .hero { grid-template-columns: 1fr; }
-  .hero-right { align-items: flex-start; flex-direction: row; flex-wrap: wrap; padding-top: 0; }
-  .bring-grid, .builder-grid, .metrics-grid { grid-template-columns: 1fr 1fr; }
-  .stack-grid { grid-template-columns: repeat(3, 1fr); }
-  .next-grid { grid-template-columns: 1fr; }
-  .next-card.dark { grid-column: span 1; flex-direction: column; align-items: flex-start; }
-  .about-grid { grid-template-columns: 1fr; }
-  .about-sidebar { position: static; }
-  .cta-section { flex-direction: column; align-items: flex-start; padding: 36px 28px; }
-  .cta-btns { align-items: flex-start; }
+/* RESPONSIVE */
+@media (max-width: 800px) {
+  .hero-body, .about-grid { grid-template-columns: 1fr; }
+  .about-sidebar, .sidebar { position: static; }
+  .metrics-grid { grid-template-columns: 1fr 1fr; }
+  .tools-grid { grid-template-columns: 1fr 1fr; }
+  .builder-header { flex-direction: column; align-items: flex-start; }
+  .cta { flex-direction: column; align-items: flex-start; padding: 36px 28px; }
 }
-@media (max-width: 480px) {
-  .bring-grid, .builder-grid, .metrics-grid, .stack-grid { grid-template-columns: 1fr; }
-  .metric-card.featured { grid-column: span 1; }
+@media (max-width: 500px) {
+  .metrics-grid, .tools-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -676,7 +319,11 @@ footer {
 <nav>
   <div class="nav-inner">
     <span class="nav-name">Jacob Rubis</span>
-    <span class="nav-pill">Open to Work</span>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#numbers">Numbers</a>
+      <a href="#tools">Tools</a>
+    </div>
   </div>
 </nav>
 
@@ -684,367 +331,194 @@ footer {
 
   <!-- HERO -->
   <header class="hero">
-    <div>
-      <div class="reveal d1">
-        <div class="hero-badge">
-          <span class="hero-badge-dot"></span>
-          Exploring New Opportunities
-        </div>
-      </div>
-      <h1 class="hero-name reveal d2">
-        I build pipeline.<br>
-        <span>Then I build</span><br>
-        what makes everyone<br>
-        better at it.
-      </h1>
-      <p class="hero-sub reveal d3">
-        Four straight quarters above quota. Tools adopted by 50+ teammates. Enterprise selling experience across IT, HR, Security, Sales, and more — based in San Diego, open to Senior SDR, Account Executive, and GTM Engineering roles.
+    <div class="hero-location reveal d1">
+      <span class="hero-dot"></span>
+      San Diego, CA
+    </div>
+    <h1 class="hero-name reveal d2">Jacob<br><span>Rubis.</span></h1>
+    <div class="hero-body reveal d3">
+      <p class="hero-p">
+        Founding BDR at <strong>Echelon AI</strong>. Michigan State grad. I sell enterprise software and spend a lot of my time building AI tools that make the people around me faster. <strong>Five straight quarters above quota</strong> at ServiceNow. MIT-certified in Applied Agentic AI.
       </p>
-      <div class="hero-contact reveal d4">
+      <div class="hero-aside">
         <a class="contact-chip" href="mailto:jacobrubis@gmail.com">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
           jacobrubis@gmail.com
         </a>
         <a class="contact-chip" href="tel:7347872292">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.82a16 16 0 0 0 6.29 6.29l.94-.94a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.82a16 16 0 0 0 6.29 6.29l.94-.94a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
           734-787-2292
         </a>
         <a class="contact-chip" href="https://www.linkedin.com/in/jacobrubis/" target="_blank">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
           LinkedIn
         </a>
+        <div class="hero-btns">
+          <a class="btn btn-dark" href="Jacob_Rubis_Resume.pdf" target="_blank">Resume</a>
+          <a class="btn btn-outline" href="https://www.credential.net/a307f636-4b47-4760-80bf-5dbe754d8eed#acc.8DtcTaQr" target="_blank">MIT Credential</a>
+        </div>
       </div>
-      <div class="hero-btns reveal d5">
-        <a class="btn btn-primary" href="Jacob_Rubis_Resume.pdf" target="_blank">Download Resume</a>
-        <a class="btn btn-secondary" href="https://www.credential.net/a307f636-4b47-4760-80bf-5dbe754d8eed#acc.8DtcTaQr" target="_blank">MIT Credential</a>
-      </div>
-    </div>
-    <div class="hero-right reveal d2">
-      <span class="role-tag accent">Senior SDR</span>
-      <span class="role-tag">Account Executive</span>
-      <span class="role-tag">GTM Engineering</span>
-      <span class="role-tag">GTM Strategy</span>
     </div>
   </header>
 
   <div class="divider"></div>
 
   <!-- ABOUT -->
-  <section class="section reveal d1">
-    <div class="section-header">
-      <span class="section-eyebrow">Background</span>
-      <h2 class="section-title">About Me</h2>
-    </div>
+  <section class="section reveal d1" id="about">
+    <span class="eyebrow">Background</span>
     <div class="about-grid">
       <div class="about-text">
         <p>I grew up in Michigan, raised by an elementary school teacher and a dad who coached my baseball teams. Before every game, he'd say: "Have fun, play smart, and be humble." I've tried to carry that into everything I do.</p>
-        <p>Midwest work ethic, humility, and community were instilled early. At Michigan State (Marketing + Sales Leadership), I found sales and it clicked. The part that drew me in was the problem solving. Understanding why a company is in pain, mapping who owns it, and figuring out how to help.</p>
-        <p>As a BDR at ServiceNow, I've developed a sharp eye for where enterprise buying motions get complicated. The handoff between marketing and sales. The gap between what an AE knows and what a buyer actually needs to move. The momentum that disappears between meetings because nothing was documented and nothing was handed off cleanly. I've become genuinely interested in those friction points, and what it takes to smooth them out.</p>
-        <p>That interest led me to build. I started creating AI-powered tools for my team, account research systems, call prep briefs, sequencing frameworks, not because I was asked to, but because the opportunity to make things work better was right in front of me. Over time, those tools were adopted organically by 50+ peers across the organization. Seeing how much friction existed in everyday business processes made me want to go deeper. I completed MIT's certification in Applied Agentic AI for Organizational Transformation to better understand how to actually fix those problems at scale.</p>
-        <p>Selling into ServiceNow's enterprise accounts also gave me something most BDRs don't get, genuine breadth. I've had real conversations with leaders across IT, HR, Customer Service, Sales, Security, Risk, and Procurement. I understand how each function operates independently, where they conflict, and how cross-departmental workflows create the problems that enterprise software solves.</p>
-        <p>That context makes me a better seller. It also makes me a better builder, because I know which problems are worth solving and how to talk about them.</p>
+        <p>Midwest work ethic, humility, and community were instilled early. At Michigan State (Marketing + Sales Leadership), I found sales and it clicked. The part that drew me in was the problem solving — understanding why a company is in pain, mapping who owns it, and figuring out how to help.</p>
+        <p>As a BDR at ServiceNow, I developed a sharp eye for where enterprise buying motions get complicated. The handoff between marketing and sales. The gap between what an AE knows and what a buyer actually needs to move. The momentum that disappears between meetings because nothing was documented and nothing was handed off cleanly. I became genuinely interested in those friction points, and what it takes to smooth them out.</p>
+        <p>That interest led me to build. I started creating AI-powered tools for my team — account research systems, call prep briefs, sequencing frameworks — not because I was asked to, but because the opportunity to make things work better was right in front of me. Over time, those tools were adopted organically by 50+ peers. I completed MIT's certification in Applied Agentic AI for Organizational Transformation to go deeper on how to fix those problems at scale.</p>
+        <p>Selling into ServiceNow's enterprise accounts also gave me something most BDRs don't get — genuine breadth. I've had real conversations with leaders across IT, HR, Customer Service, Sales, Security, Risk, and Procurement. I understand how each function operates, where they conflict, and how cross-departmental workflows create the problems that enterprise software solves. That context makes me a better seller and a better builder.</p>
+        <p>It's also what made Echelon AI the obvious next move. Echelon is an AI workforce for ServiceNow teams — built to deliver catalog items, flows, apps, and CMDB work live in your instance in hours, not weeks. It's the kind of outcome I've been selling toward for years, now from the inside. Joining as a Founding BDR means building the GTM motion from scratch: the outreach, the messaging, the systems. That combination of selling and building is exactly where I want to be.</p>
       </div>
-      <div class="about-sidebar">
-        <div class="sidebar-card">
-          <div class="sidebar-label">Education</div>
-          <div class="sidebar-val">Michigan State University<br><span style="font-size:13px;font-weight:400;color:var(--ink2)">Marketing &amp; Sales Leadership</span></div>
+      <div class="sidebar">
+        <div class="scard">
+          <div class="scard-label">Currently</div>
+          <div class="scard-val">Founding BDR @ Echelon AI</div>
+          <div class="scard-sub">AI workforce for ServiceNow teams</div>
         </div>
-        <div class="sidebar-card">
-          <div class="sidebar-label">Based In</div>
-          <div class="sidebar-val">San Diego, CA</div>
+        <div class="scard">
+          <div class="scard-label">Previously</div>
+          <div class="scard-val">BDR @ ServiceNow</div>
+          <div class="scard-sub">Commercial Illinois &amp; Midwest · 5 quarters above quota</div>
         </div>
-        <div class="sidebar-card mit-card">
-          <div class="sidebar-label">MIT Certification</div>
-          <div class="sidebar-val">Applied Agentic AI for Organizational Transformation — 70 Hours</div>
+        <div class="scard">
+          <div class="scard-label">Education</div>
+          <div class="scard-val">Michigan State University</div>
+          <div class="scard-sub">Marketing &amp; Sales Leadership</div>
+        </div>
+        <div class="scard">
+          <div class="scard-label">Based In</div>
+          <div class="scard-val">San Diego, CA</div>
+        </div>
+        <div class="scard scard-mit">
+          <div class="scard-label">MIT Certification</div>
+          <div class="scard-val">Applied Agentic AI for Organizational Transformation — 70 hours</div>
           <a class="mit-link" href="https://www.credential.net/a307f636-4b47-4760-80bf-5dbe754d8eed#acc.8DtcTaQr" target="_blank">View Credential →</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- WHAT I BRING -->
-  <section class="section reveal d1">
-    <div class="section-header">
-      <span class="section-eyebrow">What I Bring</span>
-      <h2 class="section-title">Three things I do well</h2>
-      <p class="section-desc">Every rep can book meetings. Fewer can build systems. Even fewer can do both while making the team around them faster.</p>
-    </div>
-    <div class="bring-grid">
-      <div class="bring-card c-blue">
-        <span class="bring-icon">🎯</span>
-        <div class="bring-label">Pipeline Creation</div>
-        <div class="bring-desc">4 consecutive quarters above quota. $6.6M+ pipeline generated. I turn territory intelligence and signal-based outreach into qualified conversations that convert.</div>
-      </div>
-      <div class="bring-card c-orange">
-        <span class="bring-icon">⚙️</span>
-        <div class="bring-label">Systems Builder</div>
-        <div class="bring-desc">I build AI-powered tools that 50+ teammates use daily — from roleplay trainers to post-call workflows. My output doesn't stop at my own quota.</div>
-      </div>
-      <div class="bring-card c-green">
-        <span class="bring-icon">🧠</span>
-        <div class="bring-label">GTM Intelligence</div>
-        <div class="bring-desc">MIT-certified in Agentic AI. I understand how to translate technology into sales motion and connect it to the business outcomes that matter most to each buyer.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PERFORMANCE -->
-  <section class="section reveal d2">
-    <div class="section-header">
-      <span class="section-eyebrow">The Numbers</span>
-      <h2 class="section-title">Consistent top performer</h2>
-      <p class="section-desc">Four straight quarters above quota across Mid Market, Commercial, and Enterprise accounts — net new logos and upsells.</p>
-    </div>
+  <!-- NUMBERS -->
+  <section class="section reveal d2" id="numbers">
+    <span class="eyebrow">Performance</span>
+    <h2 class="section-title">The numbers</h2>
+    <p class="section-sub">Five straight quarters above quota across Mid Market, Commercial, and Enterprise — net new logos and expansion.</p>
     <div class="metrics-grid">
-      <div class="metric-card featured">
-        <div class="metric-quarter">
-          Q1 2026
-          <span class="quota-badge qb-featured">156% Quota</span>
-        </div>
-        <div class="metric-row">
-          <div class="metric-lbl">Meetings Booked</div>
-          <div class="metric-val">21</div>
-        </div>
-        <div class="metric-row">
-          <div class="metric-lbl">Pipeline Generated</div>
-          <div class="metric-val sm">$4.7M</div>
-        </div>
-        <div class="metric-row">
-          <div class="metric-lbl">Mature Pipeline</div>
-          <div class="metric-val sm">$3.67M</div>
-        </div>
+
+      <div class="mcard dark">
+        <div class="mcard-q">Q2 2026 <span class="qbadge qb-w">234%</span></div>
+        <div class="mrow"><div class="mlbl">Opportunities</div><div class="mval">27</div></div>
+        <div class="mrow"><div class="mlbl">Pipeline</div><div class="mval sm">$3.87M</div></div>
+        <div class="mrow"><div class="mlbl">Mature Pipeline</div><div class="mval sm">$1.88M</div></div>
       </div>
-      <div class="metric-card">
-        <div class="metric-quarter">
-          Q4 2025
-          <span class="quota-badge qb-green">135%</span>
-        </div>
-        <div class="metric-row">
-          <div class="metric-lbl">Meetings Booked</div>
-          <div class="metric-val">24</div>
-        </div>
-        <div class="metric-row">
-          <div class="metric-lbl">Pipeline Generated</div>
-          <div class="metric-val sm">$1.1M</div>
-        </div>
-        <div class="bar-wrap">
-          <div class="bar-track"><div class="bar-fill" style="width:100%;background:#059669"></div></div>
-        </div>
+
+      <div class="mcard">
+        <div class="mcard-q">Q1 2026 <span class="qbadge qb-g">156%</span></div>
+        <div class="mrow"><div class="mlbl">Opportunities</div><div class="mval">21</div></div>
+        <div class="mrow"><div class="mlbl">Pipeline</div><div class="mval sm">$4.7M</div></div>
+        <div class="mrow"><div class="mlbl">Mature Pipeline</div><div class="mval sm">$3.67M</div></div>
+        <div class="bar"><div class="bar-fill" style="width:100%"></div></div>
       </div>
-      <div class="metric-card">
-        <div class="metric-quarter">
-          Q3 2025
-          <span class="quota-badge qb-green">106%</span>
-        </div>
-        <div class="metric-row">
-          <div class="metric-lbl">Meetings Booked</div>
-          <div class="metric-val">23</div>
-        </div>
-        <div class="metric-row">
-          <div class="metric-lbl">Pipeline Generated</div>
-          <div class="metric-val sm">$782K</div>
-        </div>
-        <div class="bar-wrap">
-          <div class="bar-track"><div class="bar-fill" style="width:100%;background:#059669"></div></div>
-        </div>
+
+      <div class="mcard">
+        <div class="mcard-q">Q4 2025 <span class="qbadge qb-g">135%</span></div>
+        <div class="mrow"><div class="mlbl">Opportunities</div><div class="mval">24</div></div>
+        <div class="mrow"><div class="mlbl">Pipeline</div><div class="mval sm">$1.1M</div></div>
+        <div class="bar"><div class="bar-fill" style="width:100%"></div></div>
       </div>
-      <div class="metric-card">
-        <div class="metric-quarter">
-          Q2 2025
-          <span class="quota-badge qb-blue">106%</span>
-        </div>
-        <div class="metric-row">
-          <div class="metric-lbl">Meetings Booked</div>
-          <div class="metric-val">20</div>
-        </div>
-        <div class="metric-row">
-          <div class="metric-lbl">Pipeline Generated</div>
-          <div class="metric-val sm">—</div>
-        </div>
-        <div class="bar-wrap">
-          <div class="bar-track"><div class="bar-fill" style="width:100%;background:#2563EB"></div></div>
-        </div>
+
+      <div class="mcard">
+        <div class="mcard-q">Q3 2025 <span class="qbadge qb-g">106%</span></div>
+        <div class="mrow"><div class="mlbl">Opportunities</div><div class="mval">23</div></div>
+        <div class="mrow"><div class="mlbl">Pipeline</div><div class="mval sm">$782K</div></div>
+        <div class="bar"><div class="bar-fill" style="width:100%"></div></div>
       </div>
+
     </div>
   </section>
 
-  <!-- BUILDER -->
-  <section class="section reveal d2">
-    <div class="builder-top">
-      <div class="section-header" style="margin-bottom:0">
-        <span class="section-eyebrow">The Builder Side</span>
+  <!-- TOOLS -->
+  <section class="section reveal d3" id="tools">
+    <div class="builder-header">
+      <div>
+        <span class="eyebrow">The Builder Side</span>
         <h2 class="section-title">Tools that outlive the quarter</h2>
-        <p class="section-desc">I don't just use AI — I build with it. Tools adopted organically, no mandate needed.</p>
+        <p class="section-sub" style="margin-bottom:0">Built because the opportunity to make things work better was right in front of me.</p>
       </div>
       <div class="builder-stats">
-        <div>
-          <span class="bstat-v">50+</span>
-          <span class="bstat-l">Peers using my tools</span>
-        </div>
-        <div>
-          <span class="bstat-v">8+</span>
-          <span class="bstat-l">AI tools built</span>
-        </div>
+        <div><span class="bstat-n">50+</span><span class="bstat-l">Peers using my tools</span></div>
+        <div><span class="bstat-n">11+</span><span class="bstat-l">AI tools built</span></div>
       </div>
     </div>
-    <div class="builder-grid">
-      <div class="builder-card">
-        <span class="builder-tag">Enablement</span>
-        <div class="builder-title">Roleplay Trainer</div>
-        <div class="builder-desc">"99% responsible for my high scores — nearly a replica of actual discovery calls." Adopted by 30+ reps without a single mandate.</div>
+    <div class="tools-grid">
+      <div class="tcard">
+        <span class="ttag">Enablement</span>
+        <div class="ttitle">Roleplay Trainer</div>
+        <div class="tdesc">"99% responsible for my high scores — nearly a replica of actual discovery calls." Adopted by 30+ reps without a single mandate.</div>
       </div>
-      <div class="builder-card">
-        <span class="builder-tag">Prep</span>
-        <div class="builder-title">Discovery Prep Speed Run</div>
-        <div class="builder-desc">Standardized briefing template for intro calls. Key context, pain hypotheses, and first-call agenda in under 3 minutes.</div>
+      <div class="tcard">
+        <span class="ttag">Prep</span>
+        <div class="ttitle">Discovery Prep Speed Run</div>
+        <div class="tdesc">Standardized briefing for intro calls. Key context, pain hypotheses, and first-call agenda in under 3 minutes.</div>
       </div>
-      <div class="builder-card">
-        <span class="builder-tag">Productivity</span>
-        <div class="builder-title">Post-Call Workflow</div>
-        <div class="builder-desc">Captures meeting details and auto-drafts follow-up emails. "Detailed, organized, and relevant." Saves 20+ min per call.</div>
+      <div class="tcard">
+        <span class="ttag">Productivity</span>
+        <div class="ttitle">Post-Call Workflow</div>
+        <div class="tdesc">Captures meeting details and auto-drafts follow-up emails. "Detailed, organized, and relevant." Saves 20+ min per call.</div>
       </div>
-      <div class="builder-card">
-        <span class="builder-tag">Strategy</span>
-        <div class="builder-title">Strategic Account Plan</div>
-        <div class="builder-desc">20-section account plan covering executive overview, key contacts, AI strategy, competitive intel, break-in strategy, and more — built from signals, not templates.</div>
+      <div class="tcard">
+        <span class="ttag">Strategy</span>
+        <div class="ttitle">Strategic Account Plan</div>
+        <div class="tdesc">20-section account plan covering executive overview, key contacts, AI strategy, competitive intel, and break-in strategy — built from signals, not templates.</div>
       </div>
-      <div class="builder-card">
-        <span class="builder-tag">Research</span>
-        <div class="builder-title">Industry Intel Brief</div>
-        <div class="builder-desc">Generates concise sales briefs from earnings calls, filings, and leadership signals to drive hyper-relevant outreach.</div>
+      <div class="tcard">
+        <span class="ttag">Research</span>
+        <div class="ttitle">Industry Intel Brief</div>
+        <div class="tdesc">Generates concise sales briefs from earnings calls, filings, and leadership signals to drive hyper-relevant outreach.</div>
       </div>
-      <div class="builder-card">
-        <span class="builder-tag">Efficiency</span>
-        <div class="builder-title">Pre-Call Briefing</div>
-        <div class="builder-desc">Turns scattered research into a tight brief — key players, business context, pain hypothesis, and talk track anchors.</div>
+      <div class="tcard">
+        <span class="ttag">Efficiency</span>
+        <div class="ttitle">Pre-Call Briefing</div>
+        <div class="tdesc">Turns scattered research into a tight brief — key players, business context, pain hypothesis, and talk track anchors.</div>
       </div>
     </div>
   </section>
 
-  <!-- TESTIMONIALS TICKER -->
-  <section class="ticker-section reveal d3">
-    <div class="section-header">
-      <span class="section-eyebrow">Social Proof</span>
-      <h2 class="section-title">What people say</h2>
-    </div>
+  <!-- TICKER -->
+  <div class="ticker-wrap reveal d4">
+    <span class="eyebrow" style="margin-bottom:20px">What people say</span>
     <div class="ticker-outer">
-      <div class="ticker-track" id="ticker">
-        <div class="ticker-card">
-          <div class="ticker-quote">"Your Roleplay Agent is 99% responsible for my high scores. It was nearly a replica of the actual discovery calls."</div>
-          <div class="ticker-author">BDR — Peer Review</div>
-        </div>
-        <div class="ticker-card">
-          <div class="ticker-quote">"Pre-call notes are detailed, organized, and relevant. He captures important details and even includes a follow-up email post-call."</div>
-          <div class="ticker-author">Mid-Market Account Executive</div>
-        </div>
-        <div class="ticker-card">
-          <div class="ticker-quote">"From driving SAP activity, consistent outreach, and tailored 9-boxes — Jacob's been phenomenal and has accelerated activity in our territory by 100%!!"</div>
-          <div class="ticker-author">Commercial Account Executive</div>
-        </div>
-        <div class="ticker-card">
-          <div class="ticker-quote">"He sets such a great example of what a great SDR partnership should look like. Our entire Account Executive team, leadership, and extended BU teammates are HUGE fans."</div>
-          <div class="ticker-author">Commercial Account Executive</div>
-        </div>
-        <div class="ticker-card">
-          <div class="ticker-quote">"Process-first. Building tools others use daily. Aiming to improve the team's success rate, not just his own."</div>
-          <div class="ticker-author">Operating Principle</div>
-        </div>
-        <!-- Duplicate set for seamless loop -->
-        <div class="ticker-card">
-          <div class="ticker-quote">"Your Roleplay Agent is 99% responsible for my high scores. It was nearly a replica of the actual discovery calls."</div>
-          <div class="ticker-author">BDR — Peer Review</div>
-        </div>
-        <div class="ticker-card">
-          <div class="ticker-quote">"Pre-call notes are detailed, organized, and relevant. He captures important details and even includes a follow-up email post-call."</div>
-          <div class="ticker-author">Mid-Market Account Executive</div>
-        </div>
-        <div class="ticker-card">
-          <div class="ticker-quote">"From driving SAP activity, consistent outreach, and tailored 9-boxes — Jacob's been phenomenal and has accelerated activity in our territory by 100%!!"</div>
-          <div class="ticker-author">Commercial Account Executive</div>
-        </div>
-        <div class="ticker-card">
-          <div class="ticker-quote">"He sets such a great example of what a great SDR partnership should look like. Our entire Account Executive team, leadership, and extended BU teammates are HUGE fans."</div>
-          <div class="ticker-author">Commercial Account Executive</div>
-        </div>
-        <div class="ticker-card">
-          <div class="ticker-quote">"Process-first. Building tools others use daily. Aiming to improve the team's success rate, not just his own."</div>
-          <div class="ticker-author">Operating Principle</div>
-        </div>
+      <div class="ticker-track">
+        <div class="ticker-card"><div class="tq">"Your Roleplay Agent is 99% responsible for my high scores. It was nearly a replica of the actual discovery calls."</div><div class="ta">BDR — Peer Review</div></div>
+        <div class="ticker-card"><div class="tq">"Pre-call notes are detailed, organized, and relevant. He captures important details and even includes a follow-up email post-call."</div><div class="ta">Mid-Market Account Executive</div></div>
+        <div class="ticker-card"><div class="tq">"From driving SAP activity, consistent outreach, and tailored 9-boxes — Jacob's been phenomenal and has accelerated activity in our territory by 100%!!"</div><div class="ta">Commercial Account Executive</div></div>
+        <div class="ticker-card"><div class="tq">"He sets such a great example of what a great SDR partnership should look like. Our entire Account Executive team, leadership, and extended BU teammates are HUGE fans."</div><div class="ta">Commercial Account Executive</div></div>
+        <div class="ticker-card"><div class="tq">"Process-first. Building tools others use daily. Aiming to improve the team's success rate, not just his own."</div><div class="ta">Operating Principle</div></div>
+        <!-- duplicate for loop -->
+        <div class="ticker-card"><div class="tq">"Your Roleplay Agent is 99% responsible for my high scores. It was nearly a replica of the actual discovery calls."</div><div class="ta">BDR — Peer Review</div></div>
+        <div class="ticker-card"><div class="tq">"Pre-call notes are detailed, organized, and relevant. He captures important details and even includes a follow-up email post-call."</div><div class="ta">Mid-Market Account Executive</div></div>
+        <div class="ticker-card"><div class="tq">"From driving SAP activity, consistent outreach, and tailored 9-boxes — Jacob's been phenomenal and has accelerated activity in our territory by 100%!!"</div><div class="ta">Commercial Account Executive</div></div>
+        <div class="ticker-card"><div class="tq">"He sets such a great example of what a great SDR partnership should look like. Our entire Account Executive team, leadership, and extended BU teammates are HUGE fans."</div><div class="ta">Commercial Account Executive</div></div>
+        <div class="ticker-card"><div class="tq">"Process-first. Building tools others use daily. Aiming to improve the team's success rate, not just his own."</div><div class="ta">Operating Principle</div></div>
       </div>
     </div>
-  </section>
-
-  <!-- BUILT FOR THE NEXT ROLE -->
-  <section class="section reveal d3">
-    <div class="section-header">
-      <span class="section-eyebrow">Built for the Next Role</span>
-      <h2 class="section-title">Why now. Why me</h2>
-    </div>
-    <div class="next-grid">
-      <div class="next-card dark">
-        <div>
-          <div class="next-card-tag">The Case</div>
-          <div class="next-card-title">I've been doing the AE job.<br>I'm ready to own it.</div>
-          <div class="next-card-body">I've run full discovery cycles, built territory strategy, managed account plans, and influenced deal progression — all as a BDR. I haven't been waiting for a title change. I've been preparing for one.</div>
-        </div>
-        <div class="target-roles-inline">
-          <span class="target-role-pill">Senior SDR</span>
-          <span class="target-role-pill">Account Executive</span>
-          <span class="target-role-pill">GTM Engineering</span>
-          <span class="target-role-pill">GTM Strategy</span>
-        </div>
-      </div>
-      <div class="next-card">
-        <div class="next-card-tag">1 Year</div>
-        <div class="next-card-title">Full-Cycle AE</div>
-        <div class="next-card-body">Transition into a role where I own the full customer journey — from prospecting through close — while continuing to build tools that help the team around me win faster.</div>
-      </div>
-      <div class="next-card">
-        <div class="next-card-tag">3–5 Years</div>
-        <div class="next-card-title">Sales Leadership</div>
-        <div class="next-card-body">Build and lead high-performing revenue teams that use AI to create pipeline, run discovery, and close faster. I want to shape how modern sales organizations operate — from the ground up.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SKILLS -->
-  <section class="section reveal d4">
-    <div class="section-header">
-      <span class="section-eyebrow">Capabilities</span>
-      <h2 class="section-title">Skills &amp; Tools</h2>
-    </div>
-    <div class="skills-wrap">
-      <span class="skill-pill">Prompt Engineering</span>
-      <span class="skill-pill">AI-Powered Workflow Development</span>
-      <span class="skill-pill">SPICED &amp; BANT Frameworks</span>
-      <span class="skill-pill">Signal-Based Selling</span>
-      <span class="skill-pill">Account-Based Prospecting</span>
-      <span class="skill-pill">Discovery &amp; Qualification</span>
-      <span class="skill-pill">GTM Orchestration</span>
-      <span class="skill-pill">Agentic AI</span>
-      <span class="skill-pill">Strategic Account Planning</span>
-      <span class="skill-pill">Collaboration &amp; Team Enablement</span>
-      <span class="skill-pill">Operational Excellence</span>
-      <span class="skill-pill">Tableau &amp; PowerBI</span>
-      <span class="skill-pill">Salesforce</span>
-      <span class="skill-pill">Microsoft Dynamics CRM</span>
-      <span class="skill-pill">LinkedIn Sales Navigator</span>
-      <span class="skill-pill">ZoomInfo</span>
-      <span class="skill-pill">Outreach</span>
-      <span class="skill-pill">M365</span>
-      <span class="skill-pill">Claude</span>
-    </div>
-  </section>
+  </div>
 
   <!-- CTA -->
-  <div class="cta-section reveal d5">
+  <div class="cta reveal d5">
     <div>
-      <div class="cta-title">Ready to connect</div>
-      <div class="cta-sub">Open to Senior SDR, full-cycle Account Executive, and GTM Engineering roles at companies where sales meets technology. If you're building something interesting, I want to hear about it.</div>
+      <div class="cta-title">Let's connect</div>
+      <div class="cta-sub">Based in San Diego. Building at the intersection of enterprise sales and AI. Always happy to talk shop.</div>
     </div>
     <div class="cta-btns">
       <a class="btn btn-white" href="mailto:jacobrubis@gmail.com">Email Me</a>
-      <a class="btn btn-ghost" href="https://www.linkedin.com/in/jacobrubis/" target="_blank">Connect on LinkedIn</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/jacobrubis/" target="_blank">LinkedIn</a>
     </div>
   </div>
 
@@ -1054,6 +528,5 @@ footer {
   </footer>
 
 </div>
-
 </body>
 </html>
